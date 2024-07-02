@@ -11,14 +11,17 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${ipAddress}`);
+        console.log('Fetching data with IP:', ipAddress);
+        const res = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_kpc6DpzA0pHeUCHfmETDS97NSRPHo&ipAddress=8.8.8.8`);
+        console.log('Response status:', res.status);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         const data = await res.json();
+        console.log('Data fetched:', data);
         setAddress(data);
       } catch (error) {
-        console.trace(error);
+        console.error('Fetch error:', error);
       }
     };
 
